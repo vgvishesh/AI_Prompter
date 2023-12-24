@@ -77,7 +77,7 @@ const App: React.FC = () => {
           Submit
         </button>
       </div>
-      <div className="p-4 border border-gray-300 rounded w-96 max-w-md max-h-[700px] overflow-y-auto bg-black text-white">
+      <div className="p-4 border border-gray-300 rounded" style={{ maxWidth: '500px', maxHeight: '700px', overflowY: 'auto', backgroundColor: 'black', color: 'white' }}>
         <h3 className="font-bold text-lg mb-2">Response:</h3>
         {isLoading ? (
           <div className="flex justify-center items-center h-full">
