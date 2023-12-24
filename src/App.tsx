@@ -69,9 +69,8 @@ const App: React.FC = () => {
   const formatResponseText = (text: string) => {
     return { __html: text.replace(/\n/g, '<br>') };
   };
-
   return (
-    <div className="container mx-auto p-4 min-w-[400px]">
+    <div className="container mx-auto p-4">
       <div className="flex flex-col lg:flex-row justify-center items-start lg:space-x-8 space-y-8 lg:space-y-0">
         <div className="w-full lg:flex-1 overflow-auto">
           <KeyValueForm keyValuePairs={keyValuePairs} onChange={handleKeyValueChange} />
@@ -82,11 +81,11 @@ const App: React.FC = () => {
             Submit
           </button>
         </div>
-        <div className="w-full lg:w-auto lg:flex-1 p-4 border border-gray-300 rounded" style={{ minHeight: '700px', backgroundColor: 'black', color: 'white' }}>
+        <div className="min-w-[450px] w-full lg:w-auto lg:flex-1 p-4 border border-gray-300 rounded" style={{ maxHeight: '700px', backgroundColor: 'black', color: 'white' }}>
           <h3 className="font-bold text-lg mb-2">Response:</h3>
           {isLoading ? (
             <div className="flex justify-center items-center h-full">
-              <p>Loading...</p> {/* Consider adding a spinner or loader here */}
+              <p>Loading...</p>
             </div>
           ) : (
             <div className="overflow-y-auto" style={{ maxHeight: '700px' }} dangerouslySetInnerHTML={formatResponseText(answer)} />
