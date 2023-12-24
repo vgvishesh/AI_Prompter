@@ -71,7 +71,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="container mx-auto p-4 overflow-auto">
       <div className="flex flex-col lg:flex-row justify-center items-start lg:space-x-8 space-y-8 lg:space-y-0">
         <div>
           <KeyValueForm keyValuePairs={keyValuePairs} onChange={handleKeyValueChange} />
