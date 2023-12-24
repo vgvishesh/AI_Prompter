@@ -56,7 +56,7 @@ const KeyValueForm: React.FC<KeyValueFormProps> = ({ keyValuePairs, onChange }) 
         </div>
       ))}
       <button onClick={handleAddPair} className="p-2 bg-gray-800 text-white rounded w-full">
-        Add Pair
+        Add Key
       </button>
     </div>
   );

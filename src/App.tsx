@@ -80,6 +80,7 @@ const App: React.FC = () => {
         <p className="text-md mt-2">
           Welcome to AI Prompter, an interactive tool to send prompts to a server and view responses.
           Add key-value pairs, input your prompt, and submit to see the AI response.
+          Refer the added keys by using the @ symbol in the prompt box.
         </p>
       </div>
       <div className="flex flex-col lg:flex-row justify-center items-start lg:space-x-8 space-y-8 lg:space-y-0">
