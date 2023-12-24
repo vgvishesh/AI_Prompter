@@ -66,6 +66,10 @@ const App: React.FC = () => {
     }
   };
 
+  const formatResponseText = (text: string) => {
+    return { __html: text.replace(/\n/g, '<br>') };
+  };
+
   return (
     <div className="flex justify-center items-start space-x-8 m-8">
       <div>
@@ -81,10 +85,10 @@ const App: React.FC = () => {
         <h3 className="font-bold text-lg mb-2">Response:</h3>
         {isLoading ? (
           <div className="flex justify-center items-center h-full">
-            <p>Loading...</p> {/* Replace with a spinner or loader component if available */}
+            <p>Loading...</p>
           </div>
         ) : (
-          <p className="text-justify">{answer}</p>
+          <div dangerouslySetInnerHTML={formatResponseText(answer)} />
         )}
       </div>
     </div>
