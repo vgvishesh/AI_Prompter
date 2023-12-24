@@ -15,7 +15,10 @@ const App: React.FC = () => {
   const [promptText, setPromptText] = useState<string>(() => {
     return localStorage.getItem('promptText') || '';
   });
-  const [answer, setAnswer] = useState<string>('');
+  const [answer, setAnswer] = useState<string>(() => {
+    return localStorage.getItem('answer') || '';
+  });
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
     localStorage.setItem('keyValuePairs', JSON.stringify(keyValuePairs));
@@ -24,6 +27,10 @@ const App: React.FC = () => {
   useEffect(() => {
     localStorage.setItem('promptText', promptText);
   }, [promptText]);
+
+  useEffect(() => {
+    localStorage.setItem('answer', answer);
+  }, [answer]);
 
   const handleKeyValueChange = (newPairs: KeyValuePair[]) => {
     setKeyValuePairs(newPairs);
@@ -39,6 +46,7 @@ const App: React.FC = () => {
       finalText = finalText.replace(new RegExp(`@${pair.key}`, 'g'), pair.value);
     });
 
+    setIsLoading(true);
     try {
       const response = await fetch('https://api.mega-mind.io/chat/command/', {
         method: 'POST',
@@ -51,8 +59,10 @@ const App: React.FC = () => {
 
       const data = await response.json();
       setAnswer(data.answer);
+      setIsLoading(false);
     } catch (error) {
       console.error('Error making API request:', error);
+      setIsLoading(false);
     }
   };
 
@@ -67,12 +77,16 @@ const App: React.FC = () => {
           Submit
         </button>
       </div>
-      {answer && (
-        <div className="p-4 border border-gray-300 rounded w-96 max-w-md max-h-[700px] overflow-y-auto">
-          <h3 className="font-bold text-lg mb-2">Response:</h3>
-          <p className="text-justify text-gray-700">{answer}</p>
-        </div>
-      )}
+      <div className="p-4 border border-gray-300 rounded w-96 max-w-md max-h-[700px] overflow-y-auto bg-black text-white">
+        <h3 className="font-bold text-lg mb-2">Response:</h3>
+        {isLoading ? (
+          <div className="flex justify-center items-center h-full">
+            <p>Loading...</p> {/* Replace with a spinner or loader component if available */}
+          </div>
+        ) : (
+          <p className="text-justify">{answer}</p>
+        )}
+      </div>
     </div>
   );
 };
