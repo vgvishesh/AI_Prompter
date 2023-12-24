@@ -33,24 +33,29 @@ const KeyValueForm: React.FC<KeyValueFormProps> = ({ keyValuePairs, onChange }) 
   return (
     <div>
       {keyValuePairs.map((pair, index) => (
-        <div key={index}>
+        <div key={index} className="flex items-center space-x-3 mb-3">
           <input
             type="text"
             value={pair.key}
             onChange={(e) => handleChange(index, e.target.value, pair.value)}
             placeholder="Key"
-            style={{ width: '100%', marginBottom: '5px' }}
+            className="flex-1 p-2 border border-gray-300 rounded"
           />
           <textarea
             value={pair.value}
             onChange={(e) => handleChange(index, pair.key, e.target.value)}
             placeholder="Value"
-            style={{ width: '100%', minHeight: '50px', marginBottom: '5px' }}
+            className="flex-1 p-2 border border-gray-300 rounded"
+            rows={3}
           />
-          <button onClick={() => handleRemovePair(index)}>Remove</button>
+          <button onClick={() => handleRemovePair(index)} className="p-2 bg-red-500 text-white rounded">
+            Remove
+          </button>
         </div>
       ))}
-      <button onClick={handleAddPair}>Add Pair</button>
+      <button onClick={handleAddPair} className="p-2 bg-blue-500 text-white rounded">
+        Add Pair
+      </button>
     </div>
   );
 };
