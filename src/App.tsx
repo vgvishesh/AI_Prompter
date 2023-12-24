@@ -43,10 +43,14 @@ const App: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className="m-8">
       <KeyValueForm keyValuePairs={keyValuePairs} onChange={handleKeyValueChange} />
-      <PromptField promptText={promptText} keyValuePairs={keyValuePairs} onChange={handlePromptChange} />
-      <button onClick={handleSubmit}>Submit</button>
+      <div className="my-16">
+        <PromptField promptText={promptText} keyValuePairs={keyValuePairs} onChange={handlePromptChange} />
+      </div>
+      <button onClick={handleSubmit} className="p-2 bg-blue-500 text-white rounded w-full">
+        Submit
+      </button>
     </div>
   );
 };

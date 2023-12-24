@@ -32,8 +32,9 @@ const KeyValueForm: React.FC<KeyValueFormProps> = ({ keyValuePairs, onChange }) 
 
   return (
     <div>
+      <h2 className="text-2xl font-bold mb-4">Custom Data</h2>
       {keyValuePairs.map((pair, index) => (
-        <div key={index} className="flex items-center space-x-3 mb-3">
+        <div key={index} className="flex items-start space-x-3 mb-3">
           <input
             type="text"
             value={pair.key}
@@ -46,14 +47,15 @@ const KeyValueForm: React.FC<KeyValueFormProps> = ({ keyValuePairs, onChange }) 
             onChange={(e) => handleChange(index, pair.key, e.target.value)}
             placeholder="Value"
             className="flex-1 p-2 border border-gray-300 rounded"
+            style={{ maxWidth: '500px', maxHeight: '250px' }}
             rows={3}
           />
-          <button onClick={() => handleRemovePair(index)} className="p-2 bg-red-500 text-white rounded">
+          <button onClick={() => handleRemovePair(index)} className="text-red-500">
             Remove
           </button>
         </div>
       ))}
-      <button onClick={handleAddPair} className="p-2 bg-blue-500 text-white rounded">
+      <button onClick={handleAddPair} className="p-2 bg-gray-800 text-white rounded w-full">
         Add Pair
       </button>
     </div>

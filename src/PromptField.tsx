@@ -53,7 +53,6 @@ const PromptField: React.FC<PromptFieldProps> = ({ promptText, keyValuePairs, on
       const cursorPosition = textareaRef.current.selectionStart;
       let textBeforeCursor = promptText.substring(0, cursorPosition);
 
-      // Find the position where "@" starts
       const atSymbolPosition = textBeforeCursor.lastIndexOf('@');
       if (atSymbolPosition !== -1) {
         textBeforeCursor = textBeforeCursor.substring(0, atSymbolPosition);
@@ -77,14 +76,16 @@ const PromptField: React.FC<PromptFieldProps> = ({ promptText, keyValuePairs, on
   };
 
   return (
-    <div style={{ position: 'relative' }}>
+    <div>
+      <h2 className="text-2xl font-bold mb-4">Prompt</h2>
       <textarea
         ref={textareaRef}
         value={promptText}
         onChange={handleTextAreaChange}
         onKeyDown={handleKeyDown}
         placeholder="Enter prompt text here"
-        style={{ width: '100%', height: '150px', border: '1px solid black' }}
+        className="w-full p-2 border border-gray-300 rounded"
+        style={{ height: '150px' }}
       />
       {showDropdown && (
         <div
