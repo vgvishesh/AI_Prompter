@@ -34,17 +34,17 @@ const KeyValueForm: React.FC<KeyValueFormProps> = ({ keyValuePairs, onChange }) 
     <div>
       {keyValuePairs.map((pair, index) => (
         <div key={index}>
-          <input
-            type="text"
+          <textarea
             value={pair.key}
             onChange={(e) => handleChange(index, e.target.value, pair.value)}
             placeholder="Key"
+            style={{ width: '100%', minHeight: '50px', marginBottom: '5px' }}
           />
-          <input
-            type="text"
+          <textarea
             value={pair.value}
             onChange={(e) => handleChange(index, pair.key, e.target.value)}
             placeholder="Value"
+            style={{ width: '100%', minHeight: '50px', marginBottom: '5px' }}
           />
           <button onClick={() => handleRemovePair(index)}>Remove</button>
         </div>
