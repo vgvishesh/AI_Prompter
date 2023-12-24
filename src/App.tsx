@@ -32,6 +32,10 @@ const App: React.FC = () => {
     localStorage.setItem('answer', answer);
   }, [answer]);
 
+  useEffect(() => {
+    document.title = "AI Prompter"; // Updating the title of the page
+  }, []);
+
   const handleKeyValueChange = (newPairs: KeyValuePair[]) => {
     setKeyValuePairs(newPairs);
   };
@@ -71,6 +75,13 @@ const App: React.FC = () => {
   };
   return (
     <div className="container mx-auto p-4">
+      <div className="text-center mb-8">
+        <h1 className="text-4xl font-bold">AI Prompter</h1>
+        <p className="text-md mt-2">
+          Welcome to AI Prompter, an interactive tool to send prompts to a server and view responses.
+          Add key-value pairs, input your prompt, and submit to see the AI response.
+        </p>
+      </div>
       <div className="flex flex-col lg:flex-row justify-center items-start lg:space-x-8 space-y-8 lg:space-y-0">
         <div className="w-full lg:flex-1 overflow-auto">
           <KeyValueForm keyValuePairs={keyValuePairs} onChange={handleKeyValueChange} />
