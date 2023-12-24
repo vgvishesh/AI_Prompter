@@ -15,6 +15,7 @@ const App: React.FC = () => {
   const [promptText, setPromptText] = useState<string>(() => {
     return localStorage.getItem('promptText') || '';
   });
+  const [submittedPrompt, setSubmittedPrompt] = useState<string>('');
   const [answer, setAnswer] = useState<string>(() => {
     return localStorage.getItem('answer') || '';
   });
@@ -50,6 +51,7 @@ const App: React.FC = () => {
       finalText = finalText.replace(new RegExp(`@${pair.key}`, 'g'), pair.value);
     });
 
+    setSubmittedPrompt(finalText); // Update the submitted prompt
     setIsLoading(true);
     try {
       const response = await fetch('https://api.mega-mind.io/chat/command/', {
@@ -73,6 +75,7 @@ const App: React.FC = () => {
   const formatResponseText = (text: string) => {
     return { __html: text.replace(/\n/g, '<br>') };
   };
+
   return (
     <div className="container mx-auto p-4">
       <div className="text-center mb-8">
@@ -84,7 +87,7 @@ const App: React.FC = () => {
         </p>
       </div>
       <div className="flex flex-col lg:flex-row justify-center items-start lg:space-x-8 space-y-8 lg:space-y-0">
-        <div className="w-full lg:flex-1 overflow-auto">
+        <div className="w-full lg:flex-1">
           <KeyValueForm keyValuePairs={keyValuePairs} onChange={handleKeyValueChange} />
           <div className="my-8">
             <PromptField promptText={promptText} keyValuePairs={keyValuePairs} onChange={handlePromptChange} />
@@ -92,8 +95,12 @@ const App: React.FC = () => {
           <button onClick={handleSubmit} className="p-2 bg-blue-500 text-white rounded w-full mb-8">
             Submit
           </button>
+          <div className="p-4 border border-gray-300 rounded mb-4 bg-white text-black">
+            <h3 className="font-bold text-lg mb-2">Prompt Submitted to AI:</h3>
+            <p>{submittedPrompt}</p>
+          </div>
         </div>
-        <div className="min-w-[450px] w-full lg:w-auto lg:flex-1 p-4 border border-gray-300 rounded" style={{ backgroundColor: 'black', color: 'white' }}>
+        <div className="w-full lg:w-auto lg:flex-1 p-4 border border-gray-300 rounded bg-black text-white">
           <h3 className="font-bold text-lg mb-2">Response:</h3>
           {isLoading ? (
             <div className="flex justify-center items-center h-full">
