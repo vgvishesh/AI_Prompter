@@ -71,25 +71,27 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="flex justify-center items-start space-x-8 m-8">
-      <div>
-        <KeyValueForm keyValuePairs={keyValuePairs} onChange={handleKeyValueChange} />
-        <div className="my-16">
-          <PromptField promptText={promptText} keyValuePairs={keyValuePairs} onChange={handlePromptChange} />
-        </div>
-        <button onClick={handleSubmit} className="p-2 bg-blue-500 text-white rounded w-full">
-          Submit
-        </button>
-      </div>
-      <div className="p-4 border border-gray-300 rounded" style={{ maxWidth: '500px', maxHeight: '700px', overflowY: 'auto', backgroundColor: 'black', color: 'white' }}>
-        <h3 className="font-bold text-lg mb-2">Response:</h3>
-        {isLoading ? (
-          <div className="flex justify-center items-center h-full">
-            <p>Loading...</p>
+    <div className="container mx-auto p-4">
+      <div className="flex flex-col lg:flex-row justify-center items-start lg:space-x-8 space-y-8 lg:space-y-0">
+        <div>
+          <KeyValueForm keyValuePairs={keyValuePairs} onChange={handleKeyValueChange} />
+          <div className="my-8">
+            <PromptField promptText={promptText} keyValuePairs={keyValuePairs} onChange={handlePromptChange} />
           </div>
-        ) : (
-          <div dangerouslySetInnerHTML={formatResponseText(answer)} />
-        )}
+          <button onClick={handleSubmit} className="p-2 bg-blue-500 text-white rounded w-full mb-8">
+            Submit
+          </button>
+        </div>
+        <div className="w-full lg:w-auto p-4 border border-gray-300 rounded" style={{ maxHeight: '700px', overflowY: 'auto', backgroundColor: 'black', color: 'white' }}>
+          <h3 className="font-bold text-lg mb-2">Response:</h3>
+          {isLoading ? (
+            <div className="flex justify-center items-center h-full">
+              <p>Loading...</p>
+            </div>
+          ) : (
+            <div dangerouslySetInnerHTML={formatResponseText(answer)} />
+          )}
+        </div>
       </div>
     </div>
   );
