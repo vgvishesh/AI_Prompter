@@ -34,11 +34,12 @@ const KeyValueForm: React.FC<KeyValueFormProps> = ({ keyValuePairs, onChange }) 
     <div>
       {keyValuePairs.map((pair, index) => (
         <div key={index}>
-          <textarea
+          <input
+            type="text"
             value={pair.key}
             onChange={(e) => handleChange(index, e.target.value, pair.value)}
             placeholder="Key"
-            style={{ width: '100%', minHeight: '50px', marginBottom: '5px' }}
+            style={{ width: '100%', marginBottom: '5px' }}
           />
           <textarea
             value={pair.value}
