@@ -60,7 +60,7 @@ const App: React.FC = () => {
       const response = await fetch("https://api.mega-mind.io/chat/command/", {
         method: "POST",
         headers: {
-          "X-Api-key": "TNTbN4zC",
+          "X-Api-key": "<api_key>",
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ message: finalText }),
